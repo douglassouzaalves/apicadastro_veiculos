@@ -1,5 +1,6 @@
 package br.com.cadastro.veiculos.service;
 
+import br.com.cadastro.veiculos.dto.CalculoCombustivelResponse;
 import br.com.cadastro.veiculos.dto.VeiculoResponse;
 import br.com.cadastro.veiculos.mapper.VeiculoMapper;
 import br.com.cadastro.veiculos.model.Veiculo;
@@ -35,20 +36,24 @@ public class VeiculoServiceImp implements VeiculoService {
     }
 
     @Override
-    public List<VeiculoResponse> somaTotal(BigDecimal preco, BigDecimal cidade, BigDecimal distancia) {
+    public List<CalculoCombustivelResponse> somaTotal(BigDecimal preco, BigDecimal distanciaCidade, BigDecimal distanciaEstrada) {
         List<Veiculo> listaVeiculos = veiculoRepository.findAll();
 
-        List<VeiculoResponse> calculaVeiculos = listaVeiculos.stream().map(veiculo -> {
-            //BigDecimal consumoEstrada2 = consumoService.totalUsado(veiculo.getEstradaConsumo(),)
-            BigDecimal consumoEstrada = consumoService.totalUsado(distancia, veiculo.getEstradaConsumo());
-            BigDecimal consumoCidade = consumoService.totalUsado(cidade, veiculo.getCidadeConsumo());
-            BigDecimal precoTotal = consumoService.valorTotalAPagar(preco, (consumoCidade.add(consumoEstrada)));
+        List<CalculoCombustivelResponse> calculaVeiculos = listaVeiculos.stream().map(veiculo -> {
+            BigDecimal consumoEstradaLitros = consumoService.totalLitrosUsados(distanciaEstrada, veiculo.getEstradaConsumo());
+            BigDecimal consumoCidadeLitros = consumoService.totalLitrosUsados(distanciaCidade, veiculo.getCidadeConsumo());
+            BigDecimal consumoLitrosTotal = consumoCidadeLitros.add(consumoEstradaLitros);
+            BigDecimal precoTotal = consumoService.valorTotalAPagar(preco, consumoLitrosTotal);
 
-            VeiculoResponse veiculoResponse = veiculoMapper.toDto(veiculo);
-            veiculoResponse.setTotal(precoTotal);
-            veiculoResponse.setCombustivelConsumido(consumoCidade.add(consumoEstrada));
+            CalculoCombustivelResponse calculoCombustivelResponse = new CalculoCombustivelResponse();
+            calculoCombustivelResponse.setNome(veiculo.getNome());
+            calculoCombustivelResponse.setMarca(veiculo.getMarca());
+            calculoCombustivelResponse.setModelo(veiculo.getModelo());
+            calculoCombustivelResponse.setDataDeFabricacao(veiculo.getDataDeFabricacao());
+            calculoCombustivelResponse.setQuantidadeCombustivelGasto(consumoLitrosTotal);
+            calculoCombustivelResponse.setValorTotalGastoCombustivel(precoTotal);
 
-            return veiculoResponse;
+            return calculoCombustivelResponse;
         }).collect(Collectors.toList());
 
         Collections.sort(calculaVeiculos);

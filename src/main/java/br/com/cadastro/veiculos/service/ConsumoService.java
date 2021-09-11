@@ -6,6 +6,6 @@ public interface ConsumoService {
 
     BigDecimal valorTotalAPagar(BigDecimal gasolinaPreco, BigDecimal consumoGasolina);
 
-    BigDecimal totalUsado(BigDecimal distancia, BigDecimal mediaConsumida);
+    BigDecimal totalLitrosUsados(BigDecimal distancia, BigDecimal mediaConsumida);
 
 }

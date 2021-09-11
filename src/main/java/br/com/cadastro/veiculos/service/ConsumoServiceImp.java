@@ -3,19 +3,18 @@ package br.com.cadastro.veiculos.service;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Service
-public class ConsumoServiceImp implements ConsumoService{
+public class ConsumoServiceImp implements ConsumoService {
 
     @Override
     public BigDecimal valorTotalAPagar(BigDecimal gasolinaPreco, BigDecimal consumoLitrosGasolina) {
-        gasolinaPreco = new BigDecimal("6.00");
-        BigDecimal b1 = null;
-        return b1.add(gasolinaPreco.add(consumoLitrosGasolina));
+        return gasolinaPreco.multiply(consumoLitrosGasolina);
     }
 
     @Override
-    public BigDecimal totalUsado(BigDecimal distancia, BigDecimal mediaConsumida) {
-        return distancia.divide(mediaConsumida);
+    public BigDecimal totalLitrosUsados(BigDecimal distancia, BigDecimal mediaConsumida) {
+        return distancia.divide(mediaConsumida, RoundingMode.HALF_UP);
     }
 }
