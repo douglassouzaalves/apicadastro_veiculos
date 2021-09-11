@@ -39,6 +39,7 @@ public class VeiculoServiceImp implements VeiculoService {
         List<Veiculo> listaVeiculos = veiculoRepository.findAll();
 
         List<VeiculoResponse> calculaVeiculos = listaVeiculos.stream().map(veiculo -> {
+            //BigDecimal consumoEstrada2 = consumoService.totalUsado(veiculo.getEstradaConsumo(),)
             BigDecimal consumoEstrada = consumoService.totalUsado(distancia, veiculo.getEstradaConsumo());
             BigDecimal consumoCidade = consumoService.totalUsado(cidade, veiculo.getCidadeConsumo());
             BigDecimal precoTotal = consumoService.valorTotalAPagar(preco, (consumoCidade.add(consumoEstrada)));
