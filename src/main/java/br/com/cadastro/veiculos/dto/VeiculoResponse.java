@@ -1,6 +1,7 @@
 package br.com.cadastro.veiculos.dto;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -11,8 +12,8 @@ public class VeiculoResponse {
     private final String marca;
     private final String modelo;
     private final LocalDate dataDeFabricacao;
-    private final Float cidadeConsumo;
-    private final Float estradaConsumo;
+    private final BigDecimal cidadeConsumo;
+    private final BigDecimal estradaConsumo;
 
 
     public VeiculoResponse(UUID id, String nome, String marca, String modelo, LocalDate dataDeFabricacao,
@@ -22,8 +23,8 @@ public class VeiculoResponse {
         this.marca = marca;
         this.modelo = modelo;
         this.dataDeFabricacao = dataDeFabricacao;
-        this.cidadeConsumo = cidadeConsumo;
-        this.estradaConsumo = estradaConsumo;
+        this.cidadeConsumo = new BigDecimal(cidadeConsumo);
+        this.estradaConsumo = new BigDecimal(estradaConsumo);
     }
 
     public UUID getId() {
@@ -46,11 +47,11 @@ public class VeiculoResponse {
         return dataDeFabricacao;
     }
 
-    public Float getCidadeConsumo() {
+    public BigDecimal getCidadeConsumo() {
         return cidadeConsumo;
     }
 
-    public Float getEstradaConsumo() {
+    public BigDecimal getEstradaConsumo() {
         return estradaConsumo;
     }
 
