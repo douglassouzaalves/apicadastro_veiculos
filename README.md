@@ -31,4 +31,10 @@ Testes criados para as api's.
 
 <b>Api's documentadas com Swagger:</b> http://localhost:8080/swagger-ui.html#/
 
-
+<b>Ferramentas utilizadas:</b>
+<br>
+Spring Boot
+<br>
+Gradle
+<br>
+Swagger
