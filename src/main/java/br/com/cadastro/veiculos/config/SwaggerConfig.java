@@ -17,8 +17,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.cadastro.veiculos"))
-                .paths(regex("/veiculos.*"))
+                .paths(regex("/veiculo.*"))
                 .build();
     }
-
 }

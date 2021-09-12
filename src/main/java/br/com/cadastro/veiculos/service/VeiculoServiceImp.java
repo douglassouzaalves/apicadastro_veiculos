@@ -31,7 +31,6 @@ public class VeiculoServiceImp implements VeiculoService {
     @Override
     public VeiculoResponse insert(Veiculo veiculo) {
         Veiculo salvaVeiculo = veiculoRepository.save(veiculo);
-
         return veiculoMapper.toDto(salvaVeiculo);
     }
 
