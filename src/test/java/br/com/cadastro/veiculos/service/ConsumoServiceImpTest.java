@@ -1,10 +1,12 @@
 package br.com.cadastro.veiculos.service;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
+@DisplayName("Testes para ConsumoServiceImp")
 class ConsumoServiceImpTest {
 
     private static final BigDecimal PRECO_GASOLINA = new BigDecimal("5");
@@ -15,14 +17,14 @@ class ConsumoServiceImpTest {
     private final ConsumoService consumoService = new ConsumoServiceImp();
 
     @Test
-    public void deve_Calcular_Valor_Total_A_Pagar() {
+    void deve_Calcular_Valor_Total_A_Pagar() {
         BigDecimal valorTotalAPagar = consumoService.valorTotalAPagar(PRECO_GASOLINA, CONSUMO_GASOLINA);
 
         Assertions.assertEquals(new BigDecimal("50"), valorTotalAPagar);
     }
 
     @Test
-    public void deve_Calcular_Total_Consumo() {
+    void deve_Calcular_Total_Consumo() {
         BigDecimal consumo = consumoService.totalLitrosUsados(DISTANCIA, MEDIA_CONSUMO);
 
         Assertions.assertEquals(new BigDecimal("2"), consumo);

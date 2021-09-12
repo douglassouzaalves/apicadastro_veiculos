@@ -14,15 +14,15 @@ public class VeiculoRequest {
     private final BigDecimal cidadeConsumo;
     private final BigDecimal estradaConsumo;
 
-    public VeiculoRequest(UUID id, String name, String make, String model,
-                          LocalDate manufactureDate, BigDecimal cityConsumption, BigDecimal highwayConsumption) {
+    public VeiculoRequest(UUID id, String nome, String marca, String modelo,
+                          LocalDate dataDeFabricacao, BigDecimal cidadeConsumo, BigDecimal estradaConsumo) {
         this.id = id;
-        this.nome = name;
-        this.marca = make;
-        this.modelo = model;
-        this.dataDeFabricacao = manufactureDate;
-        this.cidadeConsumo = cityConsumption;
-        this.estradaConsumo = highwayConsumption;
+        this.nome = nome;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.dataDeFabricacao = dataDeFabricacao;
+        this.cidadeConsumo = cidadeConsumo;
+        this.estradaConsumo = estradaConsumo;
     }
 
     public UUID getId() {

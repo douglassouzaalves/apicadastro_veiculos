@@ -17,14 +17,14 @@ public class VeiculoResponse {
 
 
     public VeiculoResponse(UUID id, String nome, String marca, String modelo, LocalDate dataDeFabricacao,
-                           Float cidadeConsumo, Float estradaConsumo) {
+                           BigDecimal cidadeConsumo, BigDecimal estradaConsumo) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
         this.modelo = modelo;
         this.dataDeFabricacao = dataDeFabricacao;
-        this.cidadeConsumo = new BigDecimal(cidadeConsumo);
-        this.estradaConsumo = new BigDecimal(estradaConsumo);
+        this.cidadeConsumo = new BigDecimal(String.valueOf(cidadeConsumo));
+        this.estradaConsumo = new BigDecimal(String.valueOf(estradaConsumo));
     }
 
     public UUID getId() {

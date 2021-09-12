@@ -29,15 +29,14 @@ public class VeiculoController {
     @ApiOperation("Realiza o cadastro de um veículo")
     @PostMapping
     public VeiculoResponse insert(@RequestBody VeiculoRequest veiculo) {
-        VeiculoResponse salvaVeiculo = veiculoService.insert(veiculoMapper.toEntity(veiculo));
-        return salvaVeiculo;
+        return veiculoService.insert(veiculoMapper.toEntity(veiculo));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Realiza consulta mostrando o calculo")
+    @ApiOperation("Realiza consulta mostrando o calculo gasto de combustível")
     @GetMapping(value = "/calcula")
-    public List<CalculoCombustivelResponse> calcula(@RequestParam("preco") BigDecimal preco, @RequestParam("cidade") BigDecimal cidade, @RequestParam("estrada") BigDecimal estrada) {
-        List<CalculoCombustivelResponse> dto = veiculoService.somaTotal(preco, cidade, estrada);
-        return dto;
+    public List<CalculoCombustivelResponse> calcula(@RequestParam("preco") BigDecimal preco, @RequestParam("cidade")
+            BigDecimal cidade, @RequestParam("estrada") BigDecimal estrada) {
+        return veiculoService.somaTotal(preco, cidade, estrada);
     }
 }

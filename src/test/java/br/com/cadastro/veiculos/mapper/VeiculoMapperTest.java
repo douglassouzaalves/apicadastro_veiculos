@@ -4,6 +4,7 @@ import br.com.cadastro.veiculos.dto.VeiculoRequest;
 import br.com.cadastro.veiculos.dto.VeiculoResponse;
 import br.com.cadastro.veiculos.model.Veiculo;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,9 +13,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+@DisplayName("Testes para VeiculoMapper")
 class VeiculoMapperTest {
 
-    private static final UUID ID = UUID.fromString("4eef4e4f-e70a-48b4-8621-1f40e611f88b");
+    private static final UUID ID = UUID.fromString("5eef7e7f-e70a-48b4-9121-1f40e777f77b");
     private static final String NOME = "Ford";
     private static final String MARCA = "Ka";
     private static final String MODELO = "2017";
@@ -25,7 +27,7 @@ class VeiculoMapperTest {
     private final VeiculoMapper veiculoMapper = new VeiculoMapper();
 
     @Test
-    public void deve_Mapear_Para_ToDto() {
+    void deve_Mapear_Para_ToDto() {
         Veiculo entity = new Veiculo(
                 ID,
                 NOME,
@@ -48,7 +50,7 @@ class VeiculoMapperTest {
     }
 
     @Test
-    public void deve_Mapear_ParaEntity() {
+    void deve_Mapear_ParaEntity() {
         VeiculoRequest dto = new VeiculoRequest(
                 ID,
                 NOME,
@@ -72,7 +74,7 @@ class VeiculoMapperTest {
     }
 
     @Test
-    public void _test_Deve_Mapear_ListDto() {
+    void _test_Deve_Mapear_ListDto() {
         List<Veiculo> entityList = Collections.singletonList(
                 new Veiculo(
                         ID,
@@ -99,7 +101,7 @@ class VeiculoMapperTest {
     }
 
     @Test
-    public void test_Deve_Mapear_ListEntity() {
+    void test_Deve_Mapear_ListEntity() {
         List<VeiculoRequest> dtoList = Collections.singletonList(
                 new VeiculoRequest(
                         ID,
@@ -126,28 +128,28 @@ class VeiculoMapperTest {
     }
 
     @Test
-    public void test_toEntity_Quando_for_Nulo() {
+    void test_toEntity_Quando_for_Nulo() {
         var entity = veiculoMapper.toEntity(null);
 
         Assertions.assertNull(entity);
     }
 
     @Test
-    public void test_toDto_Quando_For_Nulo() {
+    void test_toDto_Quando_For_Nulo() {
         var dto = veiculoMapper.toDto(null);
 
         Assertions.assertNull(dto);
     }
 
     @Test
-    public void test_toListEntity_Quando_For_Nulo() {
+    void test_toListEntity_Quando_For_Nulo() {
         var entity = veiculoMapper.toListEntity(null);
 
         Assertions.assertNull(entity);
     }
 
     @Test
-    public void test_toListDto_Quando_For_nulo() {
+    void test_toListDto_Quando_For_nulo() {
         var dto = veiculoMapper.toListDto(null);
 
         Assertions.assertNull(dto);

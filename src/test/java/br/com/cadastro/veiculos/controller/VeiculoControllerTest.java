@@ -1,8 +1,8 @@
 package br.com.cadastro.veiculos.controller;
 
 import br.com.cadastro.veiculos.model.Veiculo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import java.time.Month;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@DisplayName("Testes para VeiculoController")
 class VeiculoControllerTest {
 
     @Autowired
@@ -43,18 +44,9 @@ class VeiculoControllerTest {
         veiculo.setEstradaConsumo(new BigDecimal("5"));
     }
 
-//    public static String asJsonString(final Object obj) {
-//        try {
-//            final ObjectMapper mapper = new ObjectMapper();
-//            final String jsonContent = mapper.writeValueAsString(obj);
-//            return jsonContent;
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     @Test
-    public void testPostVeiculo() throws Exception {
+    void testPostVeiculo() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post(CONTEXTO_VEICULO)
                         .content("{\"nome\":\"Ka\",\"marca\":\"Ford\",\"modelo\":\"2017\",\"" +
                                 "dataDeFabricacao\":\"2017-08-08\",\"cidadeConsumo\":7,\"estradaConsumo\":5}")
@@ -69,7 +61,7 @@ class VeiculoControllerTest {
     }
 
     @Test
-    public void testGetVeiculoCalcula() throws Exception {
+    void testGetVeiculoCalcula() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post(CONTEXTO_VEICULO)
                 .content("{\"nome\":\"Ka\",\"marca\":\"Ford\",\"modelo\":\"2017\",\"" +
                         "dataDeFabricacao\":\"2017-08-08\",\"cidadeConsumo\":7,\"estradaConsumo\":5}")

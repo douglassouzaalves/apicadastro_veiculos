@@ -30,8 +30,8 @@ public class VeiculoMapper {
                 entity.getMarca(),
                 entity.getModelo(),
                 entity.getDataDeFabricacao(),
-                entity.getCidadeConsumo().floatValue(),
-                entity.getEstradaConsumo().floatValue()
+                entity.getCidadeConsumo(),
+                entity.getEstradaConsumo()
         );
     }
 
